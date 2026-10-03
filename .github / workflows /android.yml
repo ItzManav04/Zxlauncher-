@@ -17,11 +17,13 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Build APK
-        run: chmod +x ./gradlew && ./gradlew assembleDebug
+      - name: Build Debug APK
+        run: |
+          chmod +x ./gradlew
+          ./gradlew :app_pojavlauncher:assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: ZX-Launcher-debug
-          path: '**/build/outputs/apk/**/*.apk'
+          path: app_pojavlauncher/build/outputs/apk/debug/*.apk
